@@ -35,5 +35,5 @@ python src/find_location.py "/path/to/find_pulses/json/file/0123456789abcdef0123
 - Zac Plett
 - Scott Lamkin
 - Robert B. Calhoun
-- Murphey Jophnson
+- Murphey Johnson
 - Contributors to the [Python utm project](https://github.com/Turbo87/utm)
