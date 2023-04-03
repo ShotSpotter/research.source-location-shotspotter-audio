@@ -1,0 +1,589 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://shotspotter.com/schemas/smj0.json",
+  "type": "object",
+  "title": "ShotSpotter Json Metadata Chunk Version Zero (smj0)",
+  "description": "The root schema comprises the entire JSON document.",
+  "default": {},
+  "examples": [
+      {
+          "serialNumber": "SCP-00-BNG-8319",
+          "startTimeUTC": "2021-09-29T15:37:47.000Z",
+          "duration": 8.0,
+          "utcOffset": -14400.0,
+          "spoolFormat": 10,
+          "recordStatus": -1,
+          "friendlyName": "SCP-00-BNG-8319",
+          "friendlyNumber": -1,
+          "sensorType": "Scepter2",
+          "firmwareVersion": "ECO1774rc24-9.1.0.77147-0p5",
+          "geolocation": {
+              "latitude": 41.290138,
+              "longitude": -82.226468,
+              "elevation": 257.88016086756
+          },
+          "zone": {
+              "name": "OberlinOH",
+              "zoneId": 404,
+              "host": "SSI-EASTERN-DEV",
+              "instanceId": 40,
+              "instanceVersion": "9.8.12.77116",
+              "displayName": "OberlinOH",
+              "localTzid": "America/New_York"
+          },
+          "weather": {
+              "medium": "air",
+              "temperature": 18.3,
+              "relativeHumidity": 58.68,
+              "salinity": 0.0,
+              "speed": 0.0,
+              "direction": 0.0,
+              "precipitation": "clear",
+              "observationTime": "2021-09-29T14:51:00.000Z",
+              "observationDetails": {
+                  "provider": "METAR station",
+                  "station": "KCLE"
+              }
+          },
+          "transducers": [
+              {
+                  "name": "Microphone (SCP Standard)",
+                  "channel": 0,
+                  "fullScale": 93.09,
+                  "noise": 0.0,
+                  "active": true
+              }
+          ]
+      }
+  ],
+  "required": [
+      "serialNumber",
+      "startTimeUTC",
+      "duration",
+      "utcOffset",
+      "spoolFormat",
+      "recordStatus",
+      "friendlyName",
+      "friendlyNumber",
+      "sensorType",
+      "firmwareVersion",
+      "geolocation",
+      "zone",
+      "weather",
+      "transducers"
+  ],
+  "properties": {
+      "serialNumber": {
+          "$id": "#/properties/serialNumber",
+          "type": "string",
+          "title": "sensor serial number",
+          "description": "Unique serial number assigned to each sensor (cpu-unit) device.",
+          "default": "",
+          "examples": [
+              "SCP-00-BNG-8319"
+          ]
+      },
+      "startTimeUTC": {
+          "$id": "#/properties/startTimeUTC",
+          "type": "string",
+          "format": "date-time",
+          "title": "Waveform start time",
+          "description": "Starting time of the first sample of the waveform.",
+          "default": "",
+          "examples": [
+              "2021-09-29T15:37:47.000Z"
+          ]
+      },
+      "duration": {
+          "$id": "#/properties/duration",
+          "type": "number",
+          "title": "duration",
+          "description": "Duration of waveform in seconds.",
+          "default": 0.0,
+          "examples": [
+              8.0
+          ]
+      },
+      "utcOffset": {
+          "$id": "#/properties/utcOffset",
+          "type": "number",
+          "title": "UTC Offset",
+          "description": "Offset of the local time zone from UTC, in seconds. Negative means local TZ is behind UTC",
+          "default": 0.0,
+          "examples": [
+              -14400.0
+          ]
+      },
+      "spoolFormat": {
+          "$id": "#/properties/spoolFormat",
+          "type": "integer",
+          "title": "Spooling format enum",
+          "description": "Storage format on the sensor",
+          "default": 0,
+          "examples": [
+              10
+          ]
+      },
+      "recordStatus": {
+          "$id": "#/properties/recordStatus",
+          "type": "integer",
+          "title": "The recordStatus schema",
+          "description": "Recording status on the sensor, -1 if undefined.",
+          "default": 0,
+          "examples": [
+              -1
+          ]
+      },
+      "friendlyName": {
+          "$id": "#/properties/friendlyName",
+          "type": "string",
+          "title": "Friendly name",
+          "description": "Human-readable label, often physical address. Not guaranteed unique.",
+          "default": "",
+          "examples": [
+              "SCP-00-BNG-8319"
+          ]
+      },
+      "friendlyNumber": {
+          "$id": "#/properties/friendlyNumber",
+          "type": "integer",
+          "title": "The friendlyNumber schema",
+          "description": "Human-readable number, typically scoped per array. Not guaranteed unique.",
+          "default": 0,
+          "examples": [
+              -1
+          ]
+      },
+      "sensorType": {
+          "$id": "#/properties/sensorType",
+          "type": "string",
+          "title": "Sensor Type",
+          "description": "String describing the sensor hardware.",
+          "default": "",
+          "examples": [
+              "Scepter2"
+          ]
+      },
+      "firmwareVersion": {
+          "$id": "#/properties/firmwareVersion",
+          "type": "string",
+          "title": "Firmware Version",
+          "description": "Version string describing sensor firmware that recorded the file.",
+          "default": "",
+          "examples": [
+              "ECO1774rc24-9.1.0.77147-0p5"
+          ]
+      },
+      "geolocation": {
+          "$id": "#/properties/geolocation",
+          "type": "object",
+          "title": "Sensor Geolocation",
+          "description": "Sensor position, as of the start of the file. Updated every second.",
+          "default": {},
+          "examples": [
+              {
+                  "latitude": 41.290138,
+                  "longitude": -82.226468,
+                  "elevation": 257.88016086756
+              }
+          ],
+          "required": [
+              "latitude",
+              "longitude",
+              "elevation"
+          ],
+          "properties": {
+              "latitude": {
+                  "$id": "#/properties/geolocation/properties/latitude",
+                  "type": "number",
+                  "title": "The latitude schema",
+                  "description": "WGS84 latitude, in degrees.",
+                  "default": 0.0,
+                  "examples": [
+                      41.290138
+                  ]
+              },
+              "longitude": {
+                  "$id": "#/properties/geolocation/properties/longitude",
+                  "type": "number",
+                  "title": "Longitude",
+                  "description": "WGS84 longitude, in degrees.",
+                  "default": 0.0,
+                  "examples": [
+                      -82.226468
+                  ]
+              },
+              "elevation": {
+                  "$id": "#/properties/geolocation/properties/elevation",
+                  "type": "number",
+                  "title": "Elevation",
+                  "description": "Elevation in meters, relative to MSL.",
+                  "default": 0.0,
+                  "examples": [
+                      257.88016086756
+                  ]
+              }
+          },
+          "additionalProperties": true
+      },
+      "zone": {
+          "$id": "#/properties/zone",
+          "type": "object",
+          "title": "The zone schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": {},
+          "examples": [
+              {
+                  "name": "OberlinOH",
+                  "zoneId": 404,
+                  "host": "SSI-EASTERN-DEV",
+                  "instanceId": 40,
+                  "instanceVersion": "9.8.12.77116",
+                  "displayName": "OberlinOH",
+                  "localTzid": "America/New_York"
+              }
+          ],
+          "required": [
+              "name",
+              "zoneId",
+              "host",
+              "instanceId",
+              "instanceVersion",
+              "displayName",
+              "localTzid"
+          ],
+          "properties": {
+              "name": {
+                  "$id": "#/properties/zone/properties/name",
+                  "type": "string",
+                  "title": "Zone Name",
+                  "description": "Zone or array name which this sensor is a part of.",
+                  "default": "",
+                  "examples": [
+                      "OberlinOH"
+                  ]
+              },
+              "zoneId": {
+                  "$id": "#/properties/zone/properties/zoneId",
+                  "type": "integer",
+                  "title": "Zone ID",
+                  "description": "Numerical zone identification number.",
+                  "default": 0,
+                  "examples": [
+                      404
+                  ]
+              },
+              "host": {
+                  "$id": "#/properties/zone/properties/host",
+                  "type": "string",
+                  "title": "Host",
+                  "description": "Hostname of server that created the file.",
+                  "default": "",
+                  "examples": [
+                      "SSI-EASTERN-DEV"
+                  ]
+              },
+              "instanceId": {
+                  "$id": "#/properties/zone/properties/instanceId",
+                  "type": "integer",
+                  "title": "LocServer Instance ID",
+                  "description": "LocServer instance on this zone, not globally unique",
+                  "default": 0,
+                  "examples": [
+                      40
+                  ]
+              },
+              "instanceVersion": {
+                  "$id": "#/properties/zone/properties/instanceVersion",
+                  "type": "string",
+                  "title": "LocServer Instance Version String",
+                  "description": "LocServer version string.",
+                  "default": "",
+                  "examples": [
+                      "9.8.12.77116"
+                  ]
+              },
+              "displayName": {
+                  "$id": "#/properties/zone/properties/displayName",
+                  "type": "string",
+                  "title": "Display Name",
+                  "description": "Customer-visible zone name.",
+                  "default": "",
+                  "examples": [
+                      "OberlinOH"
+                  ]
+              },
+              "localTzid": {
+                  "$id": "#/properties/zone/properties/localTzid",
+                  "type": "string",
+                  "title": "Local TZID",
+                  "description": "Time Zone identifier where the file was recorded.",
+                  "default": "",
+                  "examples": [
+                      "America/New_York"
+                  ]
+              }
+          },
+          "additionalProperties": true
+      },
+      "weather": {
+          "$id": "#/properties/weather",
+          "type": "object",
+          "title": "Weather",
+          "description": "Weather conditions at time of recording.",
+          "default": {},
+          "examples": [
+              {
+                  "medium": "air",
+                  "temperature": 18.3,
+                  "relativeHumidity": 58.68,
+                  "salinity": 0.0,
+                  "speed": 0.0,
+                  "direction": 0.0,
+                  "precipitation": "clear",
+                  "observationTime": "2021-09-29T14:51:00.000Z",
+                  "observationDetails": {
+                      "provider": "METAR station",
+                      "station": "KCLE"
+                  }
+              }
+          ],
+          "required": [
+              "medium",
+              "temperature",
+              "relativeHumidity",
+              "salinity",
+              "speed",
+              "direction",
+              "precipitation",
+              "observationTime",
+              "observationDetails"
+          ],
+          "properties": {
+              "medium": {
+                  "$id": "#/properties/weather/properties/medium",
+                  "type": "string",
+                  "title": "Medium",
+                  "description": "Fluid medium, one of 'air', 'freshwater', 'saltwater'",
+                  "default": "",
+                  "examples": [
+                      "air"
+                  ]
+              },
+              "temperature": {
+                  "$id": "#/properties/weather/properties/temperature",
+                  "type": "number",
+                  "title": "Fluid temperature",
+                  "description": "Fluid temperature in degree C",
+                  "default": 0.0,
+                  "examples": [
+                      18.3
+                  ]
+              },
+              "relativeHumidity": {
+                  "$id": "#/properties/weather/properties/relativeHumidity",
+                  "type": "number",
+                  "title": "Relative humidity",
+                  "description": "Relative humidity in percent. Invalid in some datasets",
+                  "default": 0.0,
+                  "examples": [
+                      58.68
+                  ]
+              },
+              "salinity": {
+                  "$id": "#/properties/weather/properties/salinity",
+                  "type": "number",
+                  "title": "Salinity",
+                  "description": "Water salinity, in ppm. Always zero for air.",
+                  "default": 0.0,
+                  "examples": [
+                      0.0
+                  ]
+              },
+              "speed": {
+                  "$id": "#/properties/weather/properties/speed",
+                  "type": "number",
+                  "title": "Wind Speed",
+                  "description": "Fluid (wind) speed, in m s^-1.",
+                  "default": 0.0,
+                  "examples": [
+                      0.0
+                  ]
+              },
+              "direction": {
+                  "$id": "#/properties/weather/properties/direction",
+                  "type": "number",
+                  "title": "Fluid direction",
+                  "description": "Fluid (wind) direction in degrees, as a from-azimuth.",
+                  "default": 0.0,
+                  "examples": [
+                      0.0
+                  ]
+              },
+              "precipitation": {
+                  "$id": "#/properties/weather/properties/precipitation",
+                  "type": "string",
+                  "title": "Precipitation",
+                  "description": "Enum of precipitation.",
+                  "default": "",
+                  "examples": [
+                      "clear"
+                  ]
+              },
+              "observationTime": {
+                  "$id": "#/properties/weather/properties/observationTime",
+                  "type": "string",
+                  "format": "date-time",
+                  "title": "Observation Timestamp",
+                  "description": "Observation timestamp as reported by the weather provider.",
+                  "default": "",
+                  "examples": [
+                      "2021-09-29T14:51:00.000Z"
+                  ]
+              },
+              "observationDetails": {
+                  "$id": "#/properties/weather/properties/observationDetails",
+                  "type": "object",
+                  "title": "Weather observation details",
+                  "description": "Source of weather data.",
+                  "default": {},
+                  "examples": [
+                      {
+                          "provider": "METAR station",
+                          "station": "KCLE"
+                      }
+                  ],
+                  "required": [
+                      "provider",
+                      "station"
+                  ],
+                  "properties": {
+                      "provider": {
+                          "$id": "#/properties/weather/properties/observationDetails/properties/provider",
+                          "type": "string",
+                          "title": "Weather provider",
+                          "description": "Description of source of weather data.",
+                          "default": "",
+                          "examples": [
+                              "METAR station"
+                          ]
+                      },
+                      "station": {
+                          "$id": "#/properties/weather/properties/observationDetails/properties/station",
+                          "type": "string",
+                          "title": "The station schema",
+                          "description": "Station or location providing weather data.",
+                          "default": "",
+                          "examples": [
+                              "KCLE"
+                          ]
+                      }
+                  },
+                  "additionalProperties": true
+              }
+          },
+          "additionalProperties": true
+      },
+      "transducers": {
+          "$id": "#/properties/transducers",
+          "type": "array",
+          "title": "The transducers schema",
+          "description": "An explanation about the purpose of this instance.",
+          "default": [],
+          "examples": [
+              [
+                  {
+                      "name": "Microphone (SCP Standard)",
+                      "channel": 0,
+                      "fullScale": 93.09,
+                      "noise": 0.0,
+                      "active": true
+                  }
+              ]
+          ],
+          "additionalItems": true,
+          "items": {
+              "$id": "#/properties/transducers/items",
+              "anyOf": [
+                  {
+                      "$id": "#/properties/transducers/items/anyOf/0",
+                      "type": "object",
+                      "title": "The first anyOf schema",
+                      "description": "An explanation about the purpose of this instance.",
+                      "default": {},
+                      "examples": [
+                          {
+                              "name": "Microphone (SCP Standard)",
+                              "channel": 0,
+                              "fullScale": 93.09,
+                              "noise": 0.0,
+                              "active": true
+                          }
+                      ],
+                      "required": [
+                          "name",
+                          "channel",
+                          "fullScale",
+                          "noise",
+                          "active"
+                      ],
+                      "properties": {
+                          "name": {
+                              "$id": "#/properties/transducers/items/anyOf/0/properties/name",
+                              "type": "string",
+                              "title": "The name schema",
+                              "description": "An explanation about the purpose of this instance.",
+                              "default": "",
+                              "examples": [
+                                  "Microphone (SCP Standard)"
+                              ]
+                          },
+                          "channel": {
+                              "$id": "#/properties/transducers/items/anyOf/0/properties/channel",
+                              "type": "integer",
+                              "title": "Channel",
+                              "description": "Channel index, 0-based.",
+                              "default": 0,
+                              "examples": [
+                                  0
+                              ]
+                          },
+                          "fullScale": {
+                              "$id": "#/properties/transducers/items/anyOf/0/properties/fullScale",
+                              "type": "number",
+                              "title": "Full scale amplitude",
+                              "description": "Amplitude of full-scale signal, in dB SPL.",
+                              "default": 0.0,
+                              "examples": [
+                                  93.09
+                              ]
+                          },
+                          "noise": {
+                              "$id": "#/properties/transducers/items/anyOf/0/properties/noise",
+                              "type": "number",
+                              "title": "The noise schema",
+                              "description": "An explanation about the purpose of this instance.",
+                              "default": 0.0,
+                              "examples": [
+                                  0.0
+                              ]
+                          },
+                          "active": {
+                              "$id": "#/properties/transducers/items/anyOf/0/properties/active",
+                              "type": "boolean",
+                              "title": "Active",
+                              "description": "Sensor detecting pulses when file recorded.",
+                              "default": false,
+                              "examples": [
+                                  true
+                              ]
+                          }
+                      },
+                      "additionalProperties": true
+                  }
+              ]
+          }
+      }
+  },
+  "additionalProperties": true
+}
