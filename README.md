@@ -4,7 +4,7 @@
 
 # Source Localization with ShotSpotter Audio
 
-Software for working with audio files produced by the ShotSpottter Respond gunshot location system. It is complementary code to the paper "Determining the Source Location of Gunshots From DigitalRecordings." The purpose of this repo is to make plain the information embedded in ShotSpotter WAV files and to demonstrate how they can be used to produce a multilateration solution.
+Software for working with audio files produced by the ShotSpottter gunshot location system, a component of [SoundThinking](https://www.soundthinking.com/)'s [SafetySmart Platform](https://www.soundthinking.com/safetysmart-platform/). It is complementary code to the paper "Determining the Source Location of Gunshots From DigitalRecordings." The purpose of this repo is to make plain the information embedded in ShotSpotter WAV files and to demonstrate how they can be used to produce a multilateration solution.
 
 After downloading this repo, the primary usage is as follows:
 
